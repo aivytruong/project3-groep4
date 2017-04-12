@@ -1,9 +1,12 @@
 import sys
 import random
+import time
+import datetime
 import matplotlib
 import sys
 from PyQt5 import *
 from PyQt5 import QtSql, QtGui, QtCore
+import sqlite3
 matplotlib.use("Qt5Agg")
 from PyQt5 import QtCore
 from PyQt5.QtWidgets import QApplication, QMainWindow, QMenu, QVBoxLayout, QSizePolicy, QMessageBox, QWidget
@@ -13,27 +16,35 @@ from matplotlib.figure import Figure
 from PyQt5.QtSql import (QSqlDatabase, QSqlQuery, QSqlRelation,
         QSqlRelationalDelegate, QSqlRelationalTableModel)
 
+conn = sqlite3.connect('testbansql.db')
+c = conn.cursor()
+
 
 def createConnection():
     db = QtSql.QSqlDatabase.addDatabase('QSQLITE')
-    db.setDatabaseName('tutorial.db')
+    db.setDatabaseName('testbansql.db')
     if db.open():
         return True
     else:
         print (db.lastError().text())
         return False
 
+
+
+def read_from_db():
+    c.execute('SELECT * FROM datacrim3')
+    data = c.fetchall()
+    for row in c.fetchall():
+        print(row)
+
+
 class MyMplCanvas(FigureCanvas):
-    """Ultimately, this is a QWidget (as well as a FigureCanvasAgg, etc.)."""
     def __init__(self, parent=None, width=5, height=4, dpi=100):
         fig = Figure(figsize=(width, height), dpi=dpi)
         self.axes = fig.add_subplot(111)
-        # We want the axes cleared every time plot() is called
         self.axes.hold(False)
-
         self.compute_initial_figure()
 
-        #
         FigureCanvas.__init__(self, fig)
         self.setParent(parent)
 
@@ -46,9 +57,8 @@ class MyMplCanvas(FigureCanvas):
       pass
 
 
-
 class MyStaticMplCanvas(MyMplCanvas):
-    """Simple canvas with a sine plot."""
+    #Dit is een test plot zonder data
     def compute_initial_figure(self):
         t = arange(0.0, 3.0, 0.01)
         s = sin(2*pi*t)
@@ -66,9 +76,8 @@ class MyDynamicMplCanvas(MyMplCanvas):
         self.axes.plot([0, 1, 2, 3], [1, 2, 0, 4], 'r')
 
     def update_figure(self):
-        # Build a list of 4 random integers between 0 and 10 (both inclusive)
+        # Alleen random data dit
         l = [random.randint(0, 10) for i in range(4)]
-
         self.axes.plot([0, 1, 2, 3], l, 'r')
         self.draw()
 
@@ -76,7 +85,7 @@ class ApplicationWindow(QMainWindow):
     def __init__(self):
         QMainWindow.__init__(self)
         self.setAttribute(QtCore.Qt.WA_DeleteOnClose)
-        self.setWindowTitle("application main window")
+        self.setWindowTitle("Application main window")
 
         self.file_menu = QMenu('&File', self)
         self.file_menu.addAction('&Quit', self.fileQuit,
@@ -100,7 +109,7 @@ class ApplicationWindow(QMainWindow):
         self.main_widget.setFocus()
         self.setCentralWidget(self.main_widget)
 
-        self.statusBar().showMessage("All hail matplotlib!", 2000)
+        self.statusBar().showMessage("Best Data app ever!", 2000)
 
     def fileQuit(self):
         self.close()
@@ -115,7 +124,8 @@ if __name__ == '__main__':
     app = QApplication(sys.argv)
 
     aw = ApplicationWindow()
-    aw.setWindowTitle("PyQt5 Matplot Example")
+    aw.setWindowTitle("CrimApp")
     aw.show()
     #sys.exit(qApp.exec_())
     app.exec_()
+    read_from_db()

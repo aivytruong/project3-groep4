@@ -99,3 +99,5 @@ ENV/
 .idea/
 /tutorial.db
 tutorial.db
+/testbansql.db
+!/testbansql.db
