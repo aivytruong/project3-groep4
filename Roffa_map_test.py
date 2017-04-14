@@ -9,7 +9,7 @@ import requests
 
 
 
-# find the unemployment rate for the selected county, and convert it to color
+# verandert de kleur van bepaalde stukken op de map idk zoiets
 def get_color(properties):
     key = str(int(properties['jaar'])) + properties['acode']
     if key in Roffa:
