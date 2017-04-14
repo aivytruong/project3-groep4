@@ -1,10 +1,9 @@
 import sys
-from PyQt5 import QtWidgets
+from PyQt5 import (QtWidgets, QtGui, QtCore)
 from PyQt5.QtWidgets import (QLabel, QCheckBox, QVBoxLayout, QHBoxLayout, QPushButton, QApplication, QWidget)
-from PyQt5.QtGui import (QIcon, QPixmap)
 
 
-class Window(QtWidgets.QWidget):
+class MainWindow(QtWidgets.QWidget):
 
     def __init__(self):
         super().__init__()
@@ -12,16 +11,34 @@ class Window(QtWidgets.QWidget):
         self.init_ui()
 
     def init_ui(self):
+##Checkboxes:
         self.dagdeel1 = QCheckBox('00:00 - 06:00')
         self.dagdeel2 = QCheckBox('06:00 - 12:00')
         self.dagdeel3 = QCheckBox('12:00 - 18:00')
         self.dagdeel4 = QCheckBox('18:00 - 00:00')
-        self.btn_show = QPushButton('Show on map')
+
+##Feedback testlabels:
         self.lbl1 = QLabel('dagdeel 1: not checked')
         self.lbl2 = QLabel('dagdeel 2: not checked')
         self.lbl3 = QLabel('dagdeel 3: not checked')
         self.lbl4 = QLabel('dagdeel 4: not checked')
 
+##Colors:
+        red = QtGui.QPalette()
+        red.setColor(QtGui.QPalette.Foreground, QtGui.QColor(255,0,0))
+        yellow = QtGui.QPalette()
+        yellow.setColor(QtGui.QPalette.Foreground, QtGui.QColor(204,204,0))
+        orange = QtGui.QPalette()
+        orange.setColor(QtGui.QPalette.Foreground, QtGui.QColor(255,165,0))
+        purple = QtGui.QPalette()
+        purple.setColor(QtGui.QPalette.Foreground, QtGui.QColor(128,0,128))
+
+        self.dagdeel1.setPalette(yellow)
+        self.dagdeel2.setPalette(orange)
+        self.dagdeel3.setPalette(red)
+        self.dagdeel4.setPalette(purple)
+
+##Checkbox layout:
         vLayout = QVBoxLayout()
         vLayout.addWidget(self.dagdeel1)
         vLayout.addWidget(self.lbl1)
@@ -31,11 +48,10 @@ class Window(QtWidgets.QWidget):
         vLayout.addWidget(self.lbl3)
         vLayout.addWidget(self.dagdeel4)
         vLayout.addWidget(self.lbl4)
-        vLayout.addWidget(self.btn_show)
         vLayout.addStretch()
-
         self.setLayout(vLayout)
 
+##Checkbox methods:
         self.chk1 = self.dagdeel1.isChecked()
         self.chk2 = self.dagdeel2.isChecked()
         self.chk3 = self.dagdeel3.isChecked()
@@ -46,7 +62,6 @@ class Window(QtWidgets.QWidget):
         self.dagdeel3.clicked.connect(lambda: self.btn_clk3(self.dagdeel3.isChecked(), self.lbl3))
         self.dagdeel4.clicked.connect(lambda: self.btn_clk4(self.dagdeel4.isChecked(), self.lbl4))
 
-#        self.btn_show.clicked.connect(self.btn_show_clk, self.chk1, self.chk2, self.chk3, self.chk4, self.lbl1, self.lbl2, self.lbl3, self.lbl4)
 
         self.show()
 
@@ -73,5 +88,5 @@ class Window(QtWidgets.QWidget):
 
 
 app = QApplication(sys.argv)
-a_window = Window()
+a_window = MainWindow()
 sys.exit(app.exec_())
