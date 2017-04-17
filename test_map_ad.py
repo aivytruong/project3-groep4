@@ -15,6 +15,8 @@ from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg as FigureCanvas
 from matplotlib.figure import Figure
 from PyQt5.QtSql import (QSqlDatabase, QSqlQuery, QSqlRelation,
         QSqlRelationalDelegate, QSqlRelationalTableModel)
+from PIL.ImageQt import ImageQt
+
 
 conn = sqlite3.connect('testbansql.db')
 c = conn.cursor()
@@ -125,6 +127,7 @@ if __name__ == '__main__':
 
     aw = ApplicationWindow()
     aw.setWindowTitle("CrimApp")
+    # aw.setWindowIcon(aw,'android.png')
     aw.show()
     #sys.exit(qApp.exec_())
     app.exec_()
