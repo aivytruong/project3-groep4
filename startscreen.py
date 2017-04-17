@@ -1,8 +1,9 @@
 import sys
-from PyQt5 import QtWidgets
+from PyQt5 import QtWidgets, QtGui, QtCore
 from PyQt5.QtWidgets import *
 from PyQt5.QtCore import QSize
 from PyQt5.QtGui import QImage, QPalette, QBrush
+
 
 
 
@@ -40,8 +41,15 @@ class Window(QtWidgets.QWidget):
         palette.setBrush(10, QBrush(sImage))                     # 10 = Windowrole
         self.setPalette(palette)
 
+        self.b.clicked.connect(self.b_clk)
+
+    def b_clk(self):
+        import MainWindow
+        self.close()
+
+
 
 
 app = QtWidgets.QApplication(sys.argv)
 a_window = Window()
-sys.exit(app.exec_())
+app.exec_()
