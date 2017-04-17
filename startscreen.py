@@ -1,5 +1,9 @@
 import sys
 from PyQt5 import QtWidgets
+from PyQt5.QtWidgets import *
+from PyQt5.QtCore import QSize
+from PyQt5.QtGui import QImage, QPalette, QBrush
+
 
 
 class Window(QtWidgets.QWidget):
@@ -14,6 +18,8 @@ class Window(QtWidgets.QWidget):
         self.b.setFixedSize(300, 100)
         self.b.setStyleSheet('font-size: 20pt')
 
+
+
         h_box = QtWidgets.QHBoxLayout()
         h_box.addStretch()
         h_box.addWidget(self.b)
@@ -27,6 +33,13 @@ class Window(QtWidgets.QWidget):
 
 
         self.showMaximized()
+
+        oImage = QImage("RobberdamLogo.png")
+        sImage = oImage.scaled(QSize(1700, 1000))                   # resize Image to widgets size
+        palette = QPalette()
+        palette.setBrush(10, QBrush(sImage))                     # 10 = Windowrole
+        self.setPalette(palette)
+
 
 
 app = QtWidgets.QApplication(sys.argv)
