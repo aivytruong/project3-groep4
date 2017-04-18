@@ -31,4 +31,5 @@ def robGraph():
         plt.legend(['2011', '2012'], loc='upper right') #legenda's met twee values
         plt.grid()
         plt.show()
-robGraph()
+
+#robGraph()
