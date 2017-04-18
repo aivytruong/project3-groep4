@@ -16,7 +16,7 @@ class MyWebView(QtWebEngineWidgets.QWebEngineView):#KitWidgets.QWebView):
 def main():
     app = QtWidgets.QApplication(sys.argv)
     webWindow = MyWebView()
-    webWindow.load(QtCore.QUrl("http://geojson.io/#id=gist:anonymous/be7878c28a6a466694e22a3a2942f4ec&map=2/4.456415/51.90766"))
+    webWindow.load(QtCore.QUrl("http://bl.ocks.org/d/986d3f8d3039c971c7b8cf6bd7135eb0"))
     webWindow.show()
     webWindow.size()
     return app.exec_()
