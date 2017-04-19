@@ -26,18 +26,21 @@ class Window(QtWidgets.QWidget):
 
 ##Buttons:
         self.bmap = QPushButton('Map')
-        self.bmap.setFixedSize(300, 70)
+        self.bmap.setFixedSize(250, 60)
         self.bmap.setStyleSheet('font-size: 20pt')
         self.bdia = QPushButton('Diagram')
-        self.bdia.setFixedSize(300, 70)
+        self.bdia.setFixedSize(250, 60)
         self.bdia.setStyleSheet('font-size: 20pt')
+        self.bleg = QPushButton('Legenda')
+        self.bleg.setFixedSize(250, 60)
+        self.bleg.setStyleSheet('font-size: 20pt')
 
 ##Layouts:
         h_box = QHBoxLayout()
-        h_box.addWidget(self.bmute)
         h_box.addStretch()
         h_box.addWidget(self.bdia)
         h_box.addWidget(self.bmap)
+        h_box.addWidget(self.bleg)
 
         v_box = QVBoxLayout()
         v_box.addStretch()
@@ -56,6 +59,7 @@ class Window(QtWidgets.QWidget):
 ##Signals:
         self.bmap.clicked.connect(self.bmap_clk)
         self.bdia.clicked.connect(self.bdia_clk)
+        self.bleg.clicked.connect(self.bleg_clk)
 
 ##Slots:
     def bdia_clk(self):
@@ -63,6 +67,9 @@ class Window(QtWidgets.QWidget):
 
     def bmap_clk(self):
         Interactive_map_json.webWindow.main()
+
+    def bleg_clk(self):
+        
 
 
 app = QtWidgets.QApplication(sys.argv)
