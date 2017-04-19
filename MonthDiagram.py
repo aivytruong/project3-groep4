@@ -32,4 +32,4 @@ def robGraph():
         plt.grid()
         plt.show()
 
-robGraph()
+#robGraph()

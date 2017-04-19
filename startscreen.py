@@ -8,6 +8,7 @@ import Interactive_map_json
 import MonthDiagram
 import DaypartDiagram
 import Legenda
+import postcodes
 
 ##Background music:
 musicfile = 'please dont.mp3'
@@ -28,19 +29,19 @@ class Window(QtWidgets.QWidget):
 
 ##Buttons:
         self.bmap = QPushButton('Map')
-        self.bmap.setFixedSize(250, 60)
+        self.bmap.setFixedSize(290, 60)
         self.bmap.setStyleSheet('font-size: 20pt')
         self.bdim = QPushButton('Months')
-        self.bdim.setFixedSize(250, 60)
+        self.bdim.setFixedSize(290, 60)
         self.bdim.setStyleSheet('font-size: 20pt')
         self.bleg = QPushButton('Legend')
-        self.bleg.setFixedSize(250, 60)
+        self.bleg.setFixedSize(290, 60)
         self.bleg.setStyleSheet('font-size: 20pt')
         self.bdid = QPushButton('Dayparts')
-        self.bdid.setFixedSize(250, 60)
+        self.bdid.setFixedSize(290, 60)
         self.bdid.setStyleSheet('font-size: 20pt')
         self.bdin = QPushButton('Near metrostations')
-        self.bdin.setFixedSize(250, 60)
+        self.bdin.setFixedSize(290, 60)
         self.bdin.setStyleSheet('font-size: 20pt')
 
 ##Layouts:
@@ -87,7 +88,7 @@ class Window(QtWidgets.QWidget):
         DaypartDiagram.daygraph()
 
     def bdin_clk(self):
-        
+        postcodes.codegraph()
 
 
 app = QtWidgets.QApplication(sys.argv)
