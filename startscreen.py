@@ -3,9 +3,16 @@ from PyQt5 import QtWidgets, QtGui, QtCore, QtWebEngineWidgets
 from PyQt5.QtWidgets import QPushButton, QHBoxLayout, QVBoxLayout
 from PyQt5.QtCore import QSize
 from PyQt5.QtGui import QImage, QPalette, QBrush
+import pygame
 import Interactive_map_json
 import DiagramRobberies
 
+##Background music:
+musicfile = 'please dont.mp3'
+pygame.init()
+pygame.mixer.init()
+pygame.mixer.music.load(musicfile)
+pygame.mixer.music.play()
 
 class Window(QtWidgets.QWidget):
 
@@ -26,15 +33,16 @@ class Window(QtWidgets.QWidget):
         self.bdia.setStyleSheet('font-size: 20pt')
 
 ##Layouts:
+        h_box = QHBoxLayout()
+        h_box.addWidget(self.bmute)
+        h_box.addStretch()
+        h_box.addWidget(self.bdia)
+        h_box.addWidget(self.bmap)
+
         v_box = QVBoxLayout()
         v_box.addStretch()
-        v_box.addWidget(self.bdia)
-        v_box.addWidget(self.bmap)
-
-        h_box = QHBoxLayout()
-        h_box.addStretch()
-        h_box.addLayout(v_box)
-        self.setLayout(h_box)
+        v_box.addLayout(h_box)
+        self.setLayout(v_box)
 
         self.showMaximized()
 
