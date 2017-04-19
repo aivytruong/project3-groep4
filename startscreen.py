@@ -52,6 +52,7 @@ class Window(QtWidgets.QWidget):
         h_box.addWidget(self.bdim)
         h_box.addWidget(self.bmap)
         h_box.addWidget(self.bleg)
+        h_box.addStretch()
 
         v_box = QVBoxLayout()
         v_box.addStretch()
