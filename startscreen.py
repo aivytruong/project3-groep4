@@ -6,6 +6,7 @@ from PyQt5.QtGui import QImage, QPalette, QBrush
 import pygame
 import Interactive_map_json
 import DiagramRobberies
+import Legenda
 
 ##Background music:
 musicfile = 'please dont.mp3'
@@ -69,7 +70,7 @@ class Window(QtWidgets.QWidget):
         Interactive_map_json.webWindow.main()
 
     def bleg_clk(self):
-        
+        Legenda.legenda.runlegenda()
 
 
 app = QtWidgets.QApplication(sys.argv)
