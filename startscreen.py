@@ -32,7 +32,7 @@ class Window(QtWidgets.QWidget):
         self.bdia = QPushButton('Diagram')
         self.bdia.setFixedSize(250, 60)
         self.bdia.setStyleSheet('font-size: 20pt')
-        self.bleg = QPushButton('Legenda')
+        self.bleg = QPushButton('Legend')
         self.bleg.setFixedSize(250, 60)
         self.bleg.setStyleSheet('font-size: 20pt')
 
