@@ -5,7 +5,8 @@ from PyQt5.QtCore import QSize
 from PyQt5.QtGui import QImage, QPalette, QBrush
 import pygame
 import Interactive_map_json
-import DiagramRobberies
+import MonthDiagram
+import DaypartDiagram
 import Legenda
 
 ##Background music:
@@ -29,17 +30,25 @@ class Window(QtWidgets.QWidget):
         self.bmap = QPushButton('Map')
         self.bmap.setFixedSize(250, 60)
         self.bmap.setStyleSheet('font-size: 20pt')
-        self.bdia = QPushButton('Diagram')
-        self.bdia.setFixedSize(250, 60)
-        self.bdia.setStyleSheet('font-size: 20pt')
+        self.bdim = QPushButton('Months')
+        self.bdim.setFixedSize(250, 60)
+        self.bdim.setStyleSheet('font-size: 20pt')
         self.bleg = QPushButton('Legend')
         self.bleg.setFixedSize(250, 60)
         self.bleg.setStyleSheet('font-size: 20pt')
+        self.bdid = QPushButton('Dayparts')
+        self.bdid.setFixedSize(250, 60)
+        self.bdid.setStyleSheet('font-size: 20pt')
+        self.bdin = QPushButton('Near metrostations')
+        self.bdin.setFixedSize(250, 60)
+        self.bdin.setStyleSheet('font-size: 20pt')
 
 ##Layouts:
         h_box = QHBoxLayout()
         h_box.addStretch()
-        h_box.addWidget(self.bdia)
+        h_box.addWidget(self.bdin)
+        h_box.addWidget(self.bdid)
+        h_box.addWidget(self.bdim)
         h_box.addWidget(self.bmap)
         h_box.addWidget(self.bleg)
 
@@ -59,18 +68,26 @@ class Window(QtWidgets.QWidget):
 
 ##Signals:
         self.bmap.clicked.connect(self.bmap_clk)
-        self.bdia.clicked.connect(self.bdia_clk)
+        self.bdim.clicked.connect(self.bdia_clk)
         self.bleg.clicked.connect(self.bleg_clk)
+        self.bdid.clicked.connect(self.bdid_clk)
+        self.bdin.clicked.connect(self.bdin_clk)
 
 ##Slots:
     def bdia_clk(self):
-        DiagramRobberies.robGraph()
+        MonthDiagram.robGraph()
 
     def bmap_clk(self):
         Interactive_map_json.webWindow.main()
 
     def bleg_clk(self):
         Legenda.legenda.runlegenda()
+
+    def bdid_clk(self):
+        DaypartDiagram.daygraph()
+
+    def bdin_clk(self):
+        
 
 
 app = QtWidgets.QApplication(sys.argv)
